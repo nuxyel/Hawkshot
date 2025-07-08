@@ -42,19 +42,14 @@ HAWKSHOT is developed in Python 3. You will need `git` and `pip` installed.
 
 1.  **Clone the repository:**
     ```bash
-    git clone [https://github.com/your-username/hawkshot.git](https://github.com/your-username/hawkshot.git)
+    git clone [https://github.com/nuxyel/hawkshot.git](https://github.com/nuxyel/hawkshot.git)
     cd hawkshot
     ```
-    *(Replace `your-username` with your actual GitHub username)*
 
 2.  **Install dependencies:**
-    The required Python libraries are listed in `requirements.txt`.
+    Make sure the required Python libraries `dnspython` and `termcolor` are installed.
     ```bash
-    # Create a requirements.txt file with the following content:
-    # dnspython
-    # termcolor
-
-    pip install -r requirements.txt
+    pip install -r dnspython termcolor
     ```
 
 ## 🚀 Usage
@@ -112,7 +107,7 @@ python3 hawkshot.py target.com wordlist.txt -t 50 -o results.txt
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](https://www.google.com/search?q=LICENSE) file for more details.
+This project is licensed under the MIT License. See the [LICENSE](https://github.com/nuxyel/Hawkshot/blob/main/LICENSE) file for more details.
 
 ## Acknowledgments
 
