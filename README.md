@@ -42,7 +42,7 @@ HAWKSHOT is developed in Python 3. You will need `git` and `pip` installed.
 
 1.  **Clone the repository:**
     ```bash
-    git clone [https://github.com/nuxyel/hawkshot.git](https://github.com/nuxyel/hawkshot.git)
+    git clone https://github.com/nuxyel/hawkshot.git
     cd hawkshot
     ```
 
