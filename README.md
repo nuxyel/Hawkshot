@@ -51,8 +51,7 @@ Make sure the required Python libraries dnspython and termcolor are installed.
 ```bash
 pip install dnspython termcolor
 ```
-Step 3: Make it a Global Command
-This will allow you to run hawkshot from any directory in your terminal.
+Step 3: Make it a Global Command. This will allow you to run hawkshot from any directory in your terminal.
 
 ```bash
 # First, ensure the script has the shebang line #!/usr/bin/env python3 at the top.
