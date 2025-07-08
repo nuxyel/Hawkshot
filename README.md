@@ -38,22 +38,34 @@ This repository represents a significant evolution from that original concept. T
 
 ## ⚙️ Installation
 
-HAWKSHOT is developed in Python 3. You will need `git` and `pip` installed.
+Follow these steps to install HAWKSHOT and make it available as a global command on your Linux system.
 
-1.  **Clone the repository:**
-    ```bash
-    git clone https://github.com/nuxyel/hawkshot.git
-    cd hawkshot
-    ```
+### Step 1: Clone the Repository
+```bash
+git clone [https://github.com/nuxyel/hawkshot.git](https://github.com/nuxyel/hawkshot.git)
+cd hawkshot
+```
+Step 2: Install Dependencies
+Make sure the required Python libraries dnspython and termcolor are installed.
 
-2.  **Install dependencies:**
-    Make sure the required Python libraries `dnspython` and `termcolor` are installed.
-    ```bash
-    pip install dnspython termcolor
-    ```
+```bash
+pip install dnspython termcolor
+```
+Step 3: Make it a Global Command
+This will allow you to run hawkshot from any directory in your terminal.
 
-## 🚀 Usage
+```bash
+# First, ensure the script has the shebang line #!/usr/bin/env python3 at the top.
+# Then, make the script executable:
+chmod +x hawkshot.py
 
+# Now, create a symbolic link to a directory in your system's PATH (requires sudo)
+sudo ln -s "$(pwd)/hawkshot.py" /usr/local/bin/hawkshot
+After this, open a new terminal window to start using the hawkshot command.
+```
+
+🚀 Usage
+Once installed globally, you can call hawkshot directly from your terminal.
 The tool is run from the command line, requiring a target domain and a wordlist.
 
 ### Help Menu
