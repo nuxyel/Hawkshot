@@ -33,7 +33,7 @@ This repository represents a significant evolution from that original concept. T
 -   **💻 Professional CLI:** The simple `sys.argv` handling was replaced with Python's `argparse` module, offering a robust command-line interface with clear options, arguments, and a helpful `--help` menu.
 -   **🎨 Colored Output:** Results are now color-coded for better readability using the `termcolor` library. Found domains are green, timeouts are yellow, and errors are red, making it easy to parse the output visually.
 -   **💾 File Output:** Added the crucial ability to save all found subdomains to a text file with the `-o` flag, perfect for documentation and for piping into other tools.
--   **🎯 Specific Error Handling:** The generic `try...except` block was replaced with specific handlers for different `dnspython` exceptions (`NXDOMAIN`, `NoAnswer`, `Timeout`), making the tool more stable and reliable.
+-   **🎯 Specific Error Handling:** The `try...except` block was replaced with specific handlers for different `dnspython` exceptions (`NXDOMAIN`, `NoAnswer`, `Timeout`), making the tool more stable and reliable.
 -   **🌎 Universal Codebase:** All user-facing strings, comments, and documentation have been translated to English to make the tool accessible to a global audience.
 
 ## ⚙️ Installation
