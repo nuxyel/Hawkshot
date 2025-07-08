@@ -49,7 +49,7 @@ HAWKSHOT is developed in Python 3. You will need `git` and `pip` installed.
 2.  **Install dependencies:**
     Make sure the required Python libraries `dnspython` and `termcolor` are installed.
     ```bash
-    pip install -r dnspython termcolor
+    pip install dnspython termcolor
     ```
 
 ## 🚀 Usage
