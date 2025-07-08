@@ -95,8 +95,8 @@ python3 hawkshot.py target.com wordlist.txt -t 50 -o results.txt
 
 --- Starting Scan ---
 [A   ] [www.target.com](https://www.target.com)                 -> 93.184.216.34
-[A   ] dev.target.com                 -> 192.168.0.10
-[CNAME] store.target.com               -> shops.myshopify.com
+[A   ] dev.target.com                                           -> 192.168.0.10
+[CNAME] store.target.com                                        -> shops.myshopify.com
 [TIMEOUT] old.target.com
 
 --- Scan Finished ---
