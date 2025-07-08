@@ -30,7 +30,7 @@ This repository represents a significant evolution from that original concept. T
 
 -   **🚀 High Performance with Multithreading:** The original single-threaded script was slow. HAWKSHOT now uses a multi-threaded worker/queue model, allowing it to perform hundreds of DNS queries concurrently, drastically reducing scan times.
 -   **📚 Support for Multiple Record Types:** While the basic script only looked for `A` records, HAWKSHOT can query multiple types, including `A`, `AAAA`, `CNAME`, `MX`, `TXT`, and `NS`, providing a much richer set of data.
--   **💻 Professional CLI:** The simple `sys.argv` handling was replaced with Python's `argparse` module, offering a robust command-line interface with clear options, arguments, and a helpful `--help` menu.
+-   **💻 Professional CLI:** The `sys.argv` handling was replaced with Python's `argparse` module, offering a robust command-line interface with clear options, arguments, and a helpful `--help` menu.
 -   **🎨 Colored Output:** Results are now color-coded for better readability using the `termcolor` library. Found domains are green, timeouts are yellow, and errors are red, making it easy to parse the output visually.
 -   **💾 File Output:** Added the crucial ability to save all found subdomains to a text file with the `-o` flag, perfect for documentation and for piping into other tools.
 -   **🎯 Specific Error Handling:** The `try...except` block was replaced with specific handlers for different `dnspython` exceptions (`NXDOMAIN`, `NoAnswer`, `Timeout`), making the tool more stable and reliable.
