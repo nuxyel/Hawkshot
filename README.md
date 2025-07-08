@@ -42,7 +42,7 @@ Follow these steps to install HAWKSHOT and make it available as a global command
 
 ### Step 1: Clone the Repository
 ```bash
-git clone [https://github.com/nuxyel/hawkshot.git](https://github.com/nuxyel/hawkshot.git)
+git clone https://github.com/nuxyel/hawkshot.git
 cd hawkshot
 ```
 Step 2: Install Dependencies
