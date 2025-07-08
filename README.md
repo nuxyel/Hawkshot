@@ -60,8 +60,8 @@ chmod +x hawkshot.py
 
 # Now, create a symbolic link to a directory in your system's PATH (requires sudo)
 sudo ln -s "$(pwd)/hawkshot.py" /usr/local/bin/hawkshot
-After this, open a new terminal window to start using the hawkshot command.
 ```
+After this, open a new terminal window to start using the hawkshot command.
 
 🚀 Usage
 Once installed globally, you can call hawkshot directly from your terminal.
