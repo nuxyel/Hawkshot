@@ -1,6 +1,6 @@
 # 🦅 HAWKSHOT
 
-  
+```
    ▄█    █▄       ▄████████  ▄█     █▄     ▄█   ▄█▄    ▄████████    ▄█    █▄     ▄██████▄      ███     
   ███    ███     ███    ███ ███     ███   ███ ▄███▀   ███    ███   ███    ███   ███    ███ ▀█████████▄ 
   ███    ███     ███    ███ ███     ███   ███▐██▀     ███    █▀    ███    ███   ███    ███    ▀███▀▀██ 
@@ -11,7 +11,7 @@
   ███    █▀      ███    █▀   ▀███▀███▀    ███   ▀█▀  ▄████████▀    ███    █▀     ▀██████▀     ▄████▀   
                                           ▀                                                            
                             v2.7 - by r3n4n
-
+```
 <p align="center">
   <img alt="Language" src="https://img.shields.io/badge/Language-Python-blue?style=for-the-badge">
   <img alt="License" src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge">
