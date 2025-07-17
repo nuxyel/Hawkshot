@@ -140,4 +140,9 @@ This project is licensed under the MIT License. See the [LICENSE](https://github
 
   - To **Solyd** for providing the foundational knowledge and inspiration for this project.
 
+## The Future in C
+The long-term vision for HAWKSHOT is a complete rewrite of the project in the C language.
+
+The primary goals for this refactoring are to achieve maximum performance and create a single, dependency-free executable for ultimate portability in any pentesting environment. The plan involves a phased rewrite of the enum and dir modules using low-level libraries, culminating in a new, high-speed version of the tool.
+
 by *r3n4n*
