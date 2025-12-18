@@ -10,139 +10,242 @@
   ███    ███     ███    ███ ███ ▄█▄ ███   ███ ▀███▄    ▄█    ███   ███    ███   ███    ███     ███     
   ███    █▀      ███    █▀   ▀███▀███▀    ███   ▀█▀  ▄████████▀    ███    █▀     ▀██████▀     ▄████▀   
                                           ▀                                                            
-                            v3.0 - by r3n4n
+                            v4.0 - by nuxyel
 ```
 
 <div align="center">
   <img alt="Language" src="https://img.shields.io/badge/Language-Python-blue?style=for-the-badge">
   <img alt="License" src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge">
   <img alt="Pentesting" src="https://img.shields.io/badge/Usage-Pentesting%20%7C%20Recon-red?style=for-the-badge">
+  <img alt="Version" src="https://img.shields.io/badge/Version-4.0.0-purple?style=for-the-badge">
 </div>
 
-**HAWKSHOT** is a fast and efficient multi-purpose reconnaissance tool written in Python. It is designed to map the external attack surface of a target by specializing in both **DNS subdomain enumeration** and **web directory/file scanning**.
+**HAWKSHOT** is a fast, modular reconnaissance toolkit written in Python. It provides multiple scanning modules for mapping the external attack surface of targets.
 
-## From a Simple Script to a Powerful Toolkit
+## ✨ Features
 
-This project began as a simple, single-threaded DNS brute-force script, the concept of which was taught in a **Solyd** cybersecurity course. The initial version was a great starting point for understanding the basic logic of reconnaissance.
+| Module | Description |
+|--------|-------------|
+| **`enum`** | DNS subdomain enumeration with multi-record type support |
+| **`dir`** | Web directory and file brute-force scanning |
+| **`vhost`** | Virtual host enumeration via Host header manipulation |
+| **`tech`** | Technology and framework fingerprinting |
 
-This repository represents a significant evolution from that original concept. The script was completely rewritten and modularized to transform it into a practical and powerful toolkit for real-world scenarios.
+### Core Capabilities
 
-### Key Features
-
--   **🚀 High Performance with Multithreading:** Both the DNS and Web modules use a multi-threaded worker/queue model, allowing them to perform hundreds of requests concurrently and drastically reducing scan times.
--   **🔎 Dual Reconnaissance Modules:**
-    -   **`enum` module:** Performs in-depth DNS enumeration, supporting multiple record types (`A`, `AAAA`, `CNAME`, `MX`, etc.).
-    -   **`dir` module:** Scans web servers for hidden directories, files, and endpoints.
--   **💻 Professional CLI:** A robust command-line interface built with Python's `argparse` module, featuring subcommands for clear separation of functionalities and a helpful `--help` menu.
--   **🎨 Colored Output:** Results are color-coded for better readability, making it easy to spot successful finds, timeouts, and different HTTP status codes.
--   **💾 File Output:** Both modules include the ability to save results to a text file with the `-o` flag, perfect for documentation and for piping into other tools.
+- 🚀 **High Performance:** Multi-threaded worker/queue architecture
+- 📊 **Progress Tracking:** Real-time progress bars for all scans
+- 💾 **Multiple Output Formats:** Plain text and JSON export
+- 🔄 **Resume Capability:** Continue interrupted scans with `--resume`
+- 🛡️ **Robust Error Handling:** Verbose mode for debugging
+- ⏱️ **Rate Limiting:** Configurable delay to avoid detection
+- 🌐 **Cross-Platform:** Works on Linux, macOS, and Windows
 
 ## ⚙️ Installation
 
-Follow these steps to install HAWKSHOT and make it available as a global command on your Linux system.
+### Quick Install (pip)
 
-### Step 1: Clone the Repository
-```
-git clone (https://github.com/nuxyel/hawkshot.git)
+```bash
+git clone https://github.com/nuxyel/hawkshot.git
 cd hawkshot
+pip install -e .
 ```
 
-### Step 2: Install Dependencies
+### Manual Install
 
-The directory scanning module adds a new dependency (`requests`).
-
-```b
-pip install dnspython termcolor requests
+```bash
+git clone https://github.com/nuxyel/hawkshot.git
+cd hawkshot
+pip install -r requirements.txt
+python hawkshot.py --help
 ```
-
-### Step 3: Make it a Global Command
-
-This will allow you to run `hawkshot` from any directory in your terminal.
-
-```
-# Ensure the script has the shebang line #!/usr/bin/env python3 at the top.
-# Then, make the script executable:
-chmod +x hawkshot.py
-
-# Now, create a symbolic link to a directory in your system's PATH (requires sudo)
-sudo ln -s "$(pwd)/hawkshot.py" /usr/local/bin/hawkshot
-```
-
-After this, open a **new terminal window** to start using the `hawkshot` command.
 
 ## 🚀 Usage
 
-HAWKSHOT now operates using subcommands: `enum` for DNS tasks and `dir` for web scanning.
+### DNS Subdomain Enumeration
 
-### Help Menu
+```bash
+# Basic enumeration
+hawkshot enum example.com wordlist.txt
 
-To view all available options and commands:
+# With multiple record types and output
+hawkshot enum example.com wordlist.txt -t 100 -T A AAAA CNAME MX -o results.txt
 
-```
-# General help, shows the available commands (enum, dir)
-hawkshot --help
-
-# Help specific to the DNS enumeration module
-hawkshot enum --help
-
-# Help specific to the directory scanning module
-hawkshot dir --help
+# JSON output with verbose mode
+hawkshot enum example.com wordlist.txt --json -v -o results.json
 ```
 
-### Practical Examples
+### Web Directory Scanning
 
-#### 1\. DNS Enumeration (`enum`)
+```bash
+# Basic scan
+hawkshot dir http://example.com wordlist.txt
 
-*Searches for `A`, `AAAA`, and `CNAME` records, using 100 threads for higher speed.*
+# With extensions and rate limiting
+hawkshot dir http://example.com wordlist.txt -x php,html,txt --delay 0.1
 
-```
-hawkshot enum target.com wordlist_dns.txt -t 100 -T A AAAA CNAME
-```
-
-#### 2\. Directory Scanning (`dir`)
-
-*Scans a web server for common directories and saves the output to a file.*
-
-```
-hawkshot dir [http://target.com](http://target.com) wordlist_web.txt -t 50 -o results_dir.txt
+# Filter specific status codes
+hawkshot dir http://example.com wordlist.txt -s 200,301,403 --no-verify
 ```
 
-### Example Output
+### Virtual Host Enumeration
 
-#### DNS Enum Output
+```bash
+# Enumerate vhosts on IP
+hawkshot vhost http://10.10.10.10 wordlist.txt --host example.com
 
-```
-[*] Target: target.com
-[*] Wordlist: wordlist_dns.txt (5000 subdomains)
-[*] Threads: 50
---- Starting DNS Enumeration ---
-[A   ] [www.target.com](https://www.target.com)                 -> 93.184.216.34
-[CNAME] store.target.com                                        -> shops.myshopify.com
+# With custom user-agent
+hawkshot vhost http://10.10.10.10 wordlist.txt --host target.htb -ua "CustomBot/1.0"
 ```
 
-#### Directory Scan Output
+### Technology Detection
 
-```
-[*] Target URL: [http://target.com](http://target.com)
-[*] Wordlist: wordlist_web.txt (2000 paths)
-[*] Threads: 50
---- Starting Directory Scan ---
-[200] [http://target.com/admin](http://target.com/admin) (Length: 2140)
-[301] [http://target.com/login](http://target.com/login) (Length: 178)
-[403] [http://target.com/.git/config](http://target.com/.git/config) (Length: 121)
+```bash
+# Detect technologies on single target
+hawkshot tech http://example.com
+
+# Scan multiple URLs from file
+hawkshot tech http://example.com -l urls.txt -o techs.json --json
 ```
 
-## License
+## 📋 Command Reference
 
-This project is licensed under the MIT License. See the [LICENSE](https://github.com/nuxyel/Hawkshot/blob/main/LICENSE) file for more details.
+### Common Options (all modules)
 
-## Acknowledgments
+| Flag | Description |
+|------|-------------|
+| `-t, --threads` | Number of threads (1-500, default: 20) |
+| `-o, --output` | Save results to file |
+| `--json` | Output in JSON format |
+| `-v, --verbose` | Enable debug output |
+| `--delay` | Delay between requests (seconds) |
+| `--resume` | Resume interrupted scan |
+| `--timeout` | Request timeout (seconds) |
 
-  - To **Solyd** for providing the foundational knowledge and inspiration for this project.
+### DNS Enumeration (`enum`)
 
-## The Future in C
-The long-term vision for HAWKSHOT is a complete rewrite of the project in the C language.
+| Flag | Description |
+|------|-------------|
+| `-T, --types` | Record types: A, AAAA, CNAME, MX, NS, TXT, SOA, PTR, SRV, CAA |
 
-The primary goals for this refactoring are to achieve maximum performance and create a single, dependency-free executable for ultimate portability in any pentesting environment. The plan involves a phased rewrite of the enum and dir modules using low-level libraries, culminating in a new, high-speed version of the tool.
+### Directory Scanning (`dir`)
 
-by *r3n4n*
+| Flag | Description |
+|------|-------------|
+| `-ua, --user-agent` | Custom User-Agent header |
+| `--no-verify` | Disable SSL verification |
+| `-x, --extensions` | Append file extensions (e.g., php,html) |
+| `-s, --status-codes` | Filter by status codes (e.g., 200,301) |
+| `--no-redirect` | Don't follow redirects |
+
+### VHost Enumeration (`vhost`)
+
+| Flag | Description |
+|------|-------------|
+| `--host` | Base domain for vhost generation (required) |
+| `-ua, --user-agent` | Custom User-Agent header |
+| `--no-verify` | Disable SSL verification |
+
+## 📁 Project Structure
+
+```
+hawkshot/
+├── hawkshot.py          # Legacy single-file entry point
+├── setup.py             # PyPI installation script
+├── requirements.txt     # Dependencies
+├── hawkshot/
+│   ├── __init__.py
+│   ├── __main__.py      # python -m hawkshot entry
+│   ├── cli.py           # Argument parsing
+│   ├── core/
+│   │   ├── __init__.py
+│   │   ├── config.py    # Configuration & state
+│   │   ├── output.py    # Logger, progress bar
+│   │   └── validators.py # Input validation
+│   └── modules/
+│       ├── __init__.py
+│       ├── dns_enum.py  # DNS enumeration
+│       ├── web_dir.py   # Directory scanning
+│       ├── vhost_enum.py # VHost enumeration
+│       └── tech_detect.py # Technology detection
+```
+
+## 📄 Output Formats
+
+### Text Output (default)
+
+```
+# HAWKSHOT Scan Results
+# Date: 2024-01-15 14:30:22
+# module: dns_enum
+# target: example.com
+# Total results: 42
+#============================================================
+
+[A    ] api.example.com                          -> 192.168.1.1
+[CNAME] cdn.example.com                          -> cloudfront.net
+```
+
+### JSON Output (`--json`)
+
+```json
+{
+  "metadata": {
+    "tool": "hawkshot",
+    "version": "4.0.0",
+    "timestamp": "2024-01-15T14:30:22",
+    "module": "dns_enum",
+    "target": "example.com"
+  },
+  "results": [
+    {"subdomain": "api.example.com", "type": "A", "value": "192.168.1.1"}
+  ],
+  "total_count": 42
+}
+```
+
+## 🔄 Resume Capability
+
+Scans can be resumed after interruption:
+
+```bash
+# Start scan (interrupt with Ctrl+C)
+hawkshot enum example.com large_wordlist.txt -o results.txt
+# [!] Scan interrupted. State saved to .hawkshot_state_example_com.json
+
+# Resume from where it left off
+hawkshot enum example.com large_wordlist.txt -o results.txt --resume
+# [*] Resuming scan: 15000 completed, 85000 remaining
+```
+
+## 🛡️ Technology Detection
+
+HAWKSHOT can identify 50+ technologies including:
+
+- **Web Servers:** Apache, Nginx, IIS, LiteSpeed
+- **Languages:** PHP, ASP.NET, Python, Java
+- **Frameworks:** React, Vue.js, Angular, Django, Laravel, Express
+- **CMS:** WordPress, Drupal, Joomla, Shopify
+- **CDN/Proxy:** Cloudflare, Akamai, CloudFront, Varnish
+- **Analytics:** Google Analytics, Tag Manager, Hotjar
+
+## 📜 License
+
+MIT License - See [LICENSE](LICENSE) for details.
+
+## 🙏 Acknowledgments
+
+- **Solyd** for the foundational cybersecurity knowledge
+- The open-source security community
+
+## 🚧 Roadmap
+
+- [ ] Port scanning module
+- [ ] Async DNS with aiodns
+- [ ] YAML/TOML config file support
+- [ ] Plugin system for custom modules
+- [ ] C rewrite for maximum performance
+
+---
+
+**Made with ❤️ by nuxyel**
