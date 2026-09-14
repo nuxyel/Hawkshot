@@ -20,7 +20,7 @@
   <img alt="Version" src="https://img.shields.io/badge/Version-4.0.0-purple?style=for-the-badge">
 </div>
 
-**HAWKSHOT** is a fast, modular reconnaissance toolkit written in Python. It provides multiple scanning modules for mapping the external attack surface of targets.
+**HAWKSHOT** is a personal Python project, built to practice Python and networking concepts (inspired by Solyd's cybersecurity coursework) by writing a small modular reconnaissance toolkit. It's not a maintained or professionally released security tool — treat it as a learning project with working code, not a production-grade product.
 
 ## ✨ Features
 
@@ -238,13 +238,14 @@ MIT License - See [LICENSE](LICENSE) for details.
 - **Solyd** for the foundational cybersecurity knowledge
 - The open-source security community
 
-## 🚧 Roadmap
+## 🚧 Ideas for later
+
+No active development right now. Things that could be fun to add if I come back to it:
 
 - [ ] Port scanning module
 - [ ] Async DNS with aiodns
 - [ ] YAML/TOML config file support
 - [ ] Plugin system for custom modules
-- [ ] C rewrite for maximum performance
 
 ---
 
